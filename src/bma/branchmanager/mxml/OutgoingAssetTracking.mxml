@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+			
+			
+			private function showSearchResults() : void {
+				searchResults.visible = true;
+				excel.visible = true;
+				pdf.visible = true;
+				print.visible = true;
+				var data : ArrayList = new ArrayList();
+				var user : Object = new Object();
+				user["transactionDate"] = "1-Jan-2012";
+				user["totalAssets"] = "100 grams";
+				data.addItem(user);
+				user = new Object();
+				user["transactionDate"] = "2-Jan-2012";
+				user["totalAssets"] = "80 grams";
+				data.addItem(user);
+				user = new Object();
+				user["transactionDate"] = "3-Jan-2012";
+				user["totalAssets"] = "50 grams";
+				data.addItem(user);
+				searchResults.dataProvider = data;
+			}
+			
+			private function showDetails() : void {
+				var win:OutgoingAssetBreakup = PopUpManager.createPopUp(this, OutgoingAssetBreakup, true) as OutgoingAssetBreakup;
+				PopUpManager.centerPopUp(win);
+			}
+			
+		]]>
+	</mx:Script>
+	
+	
+	<mx:FormHeading label="Outgoing Asset Tracking - Please enter the input fields"/>
+	<mx:FormItem />
+	<mx:HBox>
+		<mx:Label text="Track By : " />
+		<mx:RadioButtonGroup id="radiogroup1" />
+		<mx:RadioButton label="Report Date:" groupName="radiogroup1"/>
+		<mx:DateField id="reportDate" width="100%" />
+		<mx:Spacer width="50"/>
+		<mx:RadioButton label="Date Range:" groupName="radiogroup1"/>
+		<mx:ComboBox id="requestType">
+			<mx:dataProvider>
+				<mx:ArrayList>
+					<mx:String>Select</mx:String>
+					<mx:String>Last 3 Days</mx:String>
+					<mx:String>Last 7 Days</mx:String>
+					<mx:String>Last 14 Days</mx:String>
+					<mx:String>Last 30 Days</mx:String>
+				</mx:ArrayList>			
+			</mx:dataProvider>                    
+		</mx:ComboBox>
+		<mx:Spacer width="50"/>
+		<mx:Button id="retrieveData" width="100%" label="Retrieve Data" click="showSearchResults()"/>
+	</mx:HBox>
+	<mx:Spacer height="30"/>
+	<mx:HBox horizontalAlign="left">
+		<mx:Spacer width="700"/>
+		<mx:Image id="excel" source="./images/excel-small.jpg" visible="false"/>
+		<mx:Image id="pdf" source="./images/pdf-small.jpg" visible="false"/>
+		<mx:Image id="print" source="./images/print-small.jpg" visible="false"/>
+	</mx:HBox>
+	<mx:DataGrid id="searchResults" visible="false" width="800" click="showDetails()">
+		<mx:columns>
+			<mx:DataGridColumn dataField="transactionDate" headerText="Transaction Date"/>
+			<mx:DataGridColumn dataField="totalAssets" headerText="Total Assets"/>
+		</mx:columns>
+	</mx:DataGrid>
+</mx:Form>

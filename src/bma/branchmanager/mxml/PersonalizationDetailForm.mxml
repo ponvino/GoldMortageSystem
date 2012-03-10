@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	
+	<mx:FormHeading label="Personlization Form - You can update the following fields"/>
+	<mx:FormItem />
+	<mx:HBox>		
+		<mx:FormItem label="Associate Id" horizontalAlign="left" required="true" />
+		<mx:Spacer width="90"/>
+		<mx:TextInput id="associateId" width="100%" enabled="false" text="1"/>
+	</mx:HBox>
+	<mx:HBox>		
+		<mx:FormItem label="First Name" horizontalAlign="left" required="true" />
+		<mx:Spacer width="100"/>
+		<mx:TextInput id="firstName" width="100%" enabled="false" text="Tiruppathi Rajan"/>
+	</mx:HBox>
+	<mx:HBox>		
+		<mx:FormItem label="Last Name" horizontalAlign="left" required="true" />
+		<mx:Spacer width="100"/>
+		<mx:TextInput id="lastName" width="100%" enabled="false" text="Gunaseelan"/>
+	</mx:HBox>
+	<mx:HBox>		
+		<mx:FormItem label="Date Joined" horizontalAlign="left" required="true" />
+		<mx:Spacer width="93"/>
+		<mx:DateField id="dateJoined" width="100%" enabled="false" text="06-21-2006"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Address of Communication" horizontalAlign="left" required="true" />
+		<mx:Spacer width="7"/>
+		<mx:VBox>
+			<mx:TextInput id="addr1" width="100%"/>
+			<mx:TextInput id="addr2" width="100%"/>
+			<mx:Spacer/>
+		</mx:VBox>	
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="City" direction="vertical" horizontalAlign="left" required="true" />
+		<mx:Spacer width="140"/>
+		<mx:TextInput id="city"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="ZIP Code" horizontalAlign="left" required="true"/>
+		<mx:Spacer width="110"/>
+		<mx:TextInput id="zip" width="100%"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="State" horizontalAlign="left" required="true" />
+		<mx:Spacer width="130"/>
+		<mx:ComboBox id="state">
+			<mx:dataProvider>
+				<mx:ArrayList>
+					<mx:String>Select</mx:String>
+					<mx:String>TN</mx:String>
+					<mx:String>KN</mx:String>
+					<mx:String>HYD</mx:String>
+				</mx:ArrayList>			
+			</mx:dataProvider>                    
+		</mx:ComboBox>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Country" horizontalAlign="left" required="true" />
+		<mx:Spacer width="116"/>
+		<mx:ComboBox id="cntry">
+			<mx:dataProvider>
+				<mx:ArrayList>
+					<mx:String>Select</mx:String>
+					<mx:String>INDIA</mx:String>
+					<mx:String>USA</mx:String>
+				</mx:ArrayList>			
+			</mx:dataProvider>                    
+		</mx:ComboBox>
+	</mx:HBox>	
+	<mx:HBox>
+		<mx:FormItem label="Mobile Number" direction="vertical" horizontalAlign="left" required="true" />
+		<mx:Spacer width="76"/>
+		<mx:TextInput id="mobileNumber"/>
+	</mx:HBox>
+	<mx:FormItem>
+	</mx:FormItem>
+	<mx:HBox>		
+		<mx:Button label="Update" enabled="true" labelPlacement="right"/>
+		<mx:Button label="Reset" enabled="true" labelPlacement="right"/>
+		<mx:Button label="Cancel" enabled="true" labelPlacement="right"/>
+	</mx:HBox>
+</mx:Form>

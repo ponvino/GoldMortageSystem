@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dialog.mxml -->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				layout="vertical"
+				title="Edit Customer Details"
+				showCloseButton="true"
+				width="700"
+				height="300"
+				close="titleWindow_close(event);">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			
+			private function titleWindow_close(evt:CloseEvent):void {
+				PopUpManager.removePopUp(this);
+			}
+		]]>
+	</mx:Script>
+	<mx:HBox>		
+		<mx:VBox>
+			<mx:HBox>
+				<mx:Label text="First Name : "/>
+				<mx:Spacer width="22"/>
+				<mx:TextInput text="Tiruppathi Rajan"/>
+			</mx:HBox>
+			<mx:HBox>		
+				<mx:Label text="Last Name : "/>
+				<mx:Spacer width="20"/>
+				<mx:TextInput text="Gunaseelan"/>
+			</mx:HBox>
+			<mx:HBox>		
+				<mx:Label text="Address : "/>
+				<mx:Spacer width="35"/>
+				<mx:VBox>								
+					<mx:TextInput text="215, 5th Street"/>
+					<mx:TextInput />
+				</mx:VBox>
+			</mx:HBox>
+			<mx:HBox>		
+				<mx:Label text="City : "/>
+				<mx:Spacer width="60"/>
+				<mx:TextInput text="Jersey City" />
+			</mx:HBox>
+			<mx:HBox>		
+				<mx:Label text="Zip Code : "/>
+				<mx:Spacer width="30"/>
+				<mx:TextInput text="07302"/>
+			</mx:HBox>			
+		</mx:VBox>
+		<mx:Spacer width="25"/>
+		<mx:VBox>			
+			<mx:HBox>		
+				<mx:Label text="State : "/>
+				<mx:Spacer width="50"/>
+				<mx:TextInput text="NJ"/>
+			</mx:HBox>
+			<mx:HBox>		
+				<mx:Label text="Country : "/>
+				<mx:Spacer width="40"/>
+				<mx:TextInput text="USA"/>
+			</mx:HBox>
+			<mx:HBox>		
+				<mx:Label text="Contact Number : "/>
+				<mx:TextInput text="201-450-0454"/>
+			</mx:HBox>
+			<mx:HBox>		
+				<mx:Label text="ID Type : "/>
+				<mx:Spacer width="40"/>
+				<mx:ComboBox id="idType" selectedItem="Pan Card">
+					<mx:dataProvider>
+						<mx:ArrayList>
+							<mx:String>Select</mx:String>
+							<mx:String>Pan Card</mx:String>
+							<mx:String>Voter Id</mx:String>
+							<mx:String>Passport</mx:String>
+							<mx:String>Ration Card</mx:String>
+						</mx:ArrayList>			
+					</mx:dataProvider>                    
+				</mx:ComboBox>
+			</mx:HBox>
+			<mx:HBox>		
+				<mx:Label text="Attach ID Proof : "/>
+				<mx:Spacer width="3"/>
+				<mx:TextInput text="C:\PanCard.jpg"/>
+				<mx:Button label="Browse"/>
+			</mx:HBox>
+			<mx:HBox>		
+				<mx:Label text="Last Updated : "/>
+				<mx:Spacer width="10"/>
+				<mx:TextInput text="3-Mar-2012" />
+			</mx:HBox>
+		</mx:VBox>		
+	</mx:HBox>
+	<mx:Spacer height="35"/>
+	<mx:HBox>
+		<mx:Spacer width="250"/>
+		<mx:Button label="Update" />
+		<mx:Button label="Reset" />
+		<mx:Button label="Cancel" />
+	</mx:HBox>
+</mx:TitleWindow>

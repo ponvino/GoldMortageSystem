@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	
+	<mx:FormHeading label="Work Order Details Form - Please fill the following mandatory fields"/>
+	<mx:FormItem />
+	<mx:HBox>		
+		<mx:FormItem label="Date" horizontalAlign="left" required="true" />
+		<mx:Spacer width="93"/>
+		<mx:DateField id="date" width="100%"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Request To" horizontalAlign="left" required="true" />
+		<mx:Spacer width="53"/>
+		<mx:ComboBox id="requestTo">
+			<mx:dataProvider>
+				<mx:ArrayList>
+					<mx:String>Select</mx:String>
+					<mx:String>Manager</mx:String>
+					<mx:String>Assistant Manager</mx:String>
+					<mx:String>Both</mx:String>
+				</mx:ArrayList>			
+			</mx:dataProvider>                    
+		</mx:ComboBox>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Request Type" horizontalAlign="left" required="true" />
+		<mx:Spacer width="42"/>
+		<mx:ComboBox id="requestType">
+			<mx:dataProvider>
+				<mx:ArrayList>
+					<mx:String>Select</mx:String>
+					<mx:String>Apply for a Leave</mx:String>
+					<mx:String>Request for a Loan</mx:String>
+					<mx:String>Request for Additional Infrastructure</mx:String>
+					<mx:String>Request Money for Branch Operations</mx:String>
+				</mx:ArrayList>			
+			</mx:dataProvider>                    
+		</mx:ComboBox>	
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Description" direction="vertical" horizontalAlign="left" required="true" />
+		<mx:Spacer width="53"/>
+		<mx:TextInput id="description" width="500" height="200"/>
+	</mx:HBox>
+	<mx:FormItem>
+	</mx:FormItem>
+	<mx:Button label="Submit" enabled="true" labelPlacement="right"/>
+</mx:Form>

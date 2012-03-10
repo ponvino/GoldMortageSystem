@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dialog.mxml -->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				layout="vertical"
+				title="Update Work Order "
+				showCloseButton="true"
+				width="600"
+				height="400"
+				close="titleWindow_close(event);">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			
+			private function titleWindow_close(evt:CloseEvent):void {
+				PopUpManager.removePopUp(this);
+			}
+			
+			public function showBranch():void {			
+				branch.visible = true;
+			}
+			
+		]]>
+	</mx:Script>	
+	<mx:Spacer height="20"/>
+	<mx:HBox id="branch" visible="true">		
+		<mx:VBox>		
+			<mx:HBox>
+				<mx:Label text="Comments"/>
+				<mx:Spacer width="40"/>
+				<mx:TextArea width="300" height="200"/>
+			</mx:HBox>
+		</mx:VBox>
+	</mx:HBox>
+	<mx:Spacer height="50"/>
+	<mx:HBox>		
+		<mx:Spacer width="150"/>
+		<mx:Button label="Request for Update" />		
+		<mx:Button label="Cancel" />
+	</mx:HBox>
+</mx:TitleWindow>

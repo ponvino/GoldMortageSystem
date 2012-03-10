@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			
+			
+			public function addBreakUpDetails() : void {
+				if(assetBreakUp.selectedLabel == "Ring") {
+					ringHBox.visible = true;
+				}else if(assetBreakUp.selectedLabel == "Chain") {
+					chainHBox.visible = true;
+				} else if(assetBreakUp.selectedLabel == "Bangle") {
+					bangleHBox.visible = true;
+				} else if(assetBreakUp.selectedLabel == "Coin") {
+					coinHBox.visible = true;
+				}
+			}
+			
+			private function createTransaction() : void {				
+				Alert.show("Please fill in all the mandatory fields to create a transaction");
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:FormHeading label="Transaction Details Form - Please fill the following mandatory fields"/>
+	<mx:FormItem />
+	<mx:HBox>		
+		<mx:FormItem label="Market Rate(1 gram)" horizontalAlign="left" required="true" />
+		<mx:Spacer width="10"/>
+		<mx:TextInput id="marketRate" width="100%" enabled="false" text="2800.50(INR)"/>
+	</mx:HBox>
+	<mx:HBox>		
+		<mx:FormItem label="Transaction Date" horizontalAlign="left" required="true" />
+		<mx:Spacer width="30"/>
+		<mx:DateField id="transactionDate" width="100%"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Customer Id" horizontalAlign="left" required="true" />
+		<mx:Spacer width="58"/>
+		<mx:TextInput id="customerId" width="100%"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Total Asset" horizontalAlign="left" required="true" />
+		<mx:Spacer width="63"/>
+		<mx:VBox>
+			<mx:TextInput id="totalAsset" width="100%"/>
+			<mx:Spacer/>
+		</mx:VBox>	
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Asset Break up" direction="vertical" horizontalAlign="left" required="true" />
+		<mx:Spacer width="41"/>
+		<mx:ComboBox id="assetBreakUp">
+			<mx:dataProvider>
+				<mx:ArrayList>
+					<mx:String>Select</mx:String>
+					<mx:String>Ring</mx:String>
+					<mx:String>Chain</mx:String>
+					<mx:String>Bangle</mx:String>
+					<mx:String>Coin</mx:String>
+				</mx:ArrayList>			
+			</mx:dataProvider>                    
+		</mx:ComboBox>
+		<mx:Image source="./images/add-small.jpg" click="addBreakUpDetails()"/>
+	</mx:HBox>
+	<mx:HBox visible="false" id="ringHBox">
+		<mx:FormItem label="Ring" horizontalAlign="left" required="true"/>
+		<mx:Spacer width="102"/>
+		<mx:TextInput id="ring" width="100%"/>
+	</mx:HBox>
+	<mx:HBox visible="false" id="chainHBox">
+		<mx:FormItem label="Chain" horizontalAlign="left" required="true"/>
+		<mx:Spacer width="96"/>
+		<mx:TextInput id="chain" width="100%"/>
+	</mx:HBox>
+	<mx:HBox visible="false" id="bangleHBox">
+		<mx:FormItem label="Bangle" horizontalAlign="left" required="true"/>
+		<mx:Spacer width="90"/>
+		<mx:TextInput id="bangle" width="100%"/>
+	</mx:HBox>
+	<mx:HBox visible="false" id="coinHBox">
+		<mx:FormItem label="Coin" horizontalAlign="left" required="true"/>
+		<mx:Spacer width="105"/>
+		<mx:TextInput id="coin" width="100%"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Validated By" horizontalAlign="left" required="true" />
+		<mx:Spacer width="63"/>
+		<mx:ComboBox id="validatedBy">
+			<mx:dataProvider>
+				<mx:ArrayList>
+					<mx:String>Select</mx:String>
+					<mx:String>Branch Manager</mx:String>
+					<mx:String>Assistant Branch Manager</mx:String>
+				</mx:ArrayList>			
+			</mx:dataProvider>                    
+		</mx:ComboBox>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Estimated Amount" horizontalAlign="left" required="true"/>
+		<mx:Spacer width="30"/>
+		<mx:TextInput id="estimatedAmount" width="100%"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Due Date" horizontalAlign="left" required="true"/>
+		<mx:Spacer width="83"/>
+		<mx:DateField id="dueDate" width="100%"/>
+	</mx:HBox>
+	<mx:FormItem>
+	</mx:FormItem>
+	<mx:Button label="Submit Transaction" enabled="true" labelPlacement="right" click="createTransaction()"/>
+</mx:Form>

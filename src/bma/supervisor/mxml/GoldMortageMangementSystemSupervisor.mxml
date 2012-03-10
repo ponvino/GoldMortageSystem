@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+				layout="absolute" height="100%" width="100%" xmlns:local="*" creationPolicy="auto" xmlns:supervisor="bma.supervisor.*" xmlns:mxml="bma.supervisor.mxml.*">
+	
+	<mx:Script>
+		<![CDATA[			
+			
+			
+		]]>
+	</mx:Script>
+	<mx:Style>
+		.header{
+			font-size:35;
+			font-thickness:bold
+				
+		}
+	</mx:Style>
+	<mx:VBox width="100%" height="100%" borderColor="#AECAD9">
+	<mx:HBox height="15%" width="100%" backgroundColor="#AECAD9">
+		<mx:Label id="header" styleName="header" text="Gold Mortage System" height="100%" width="100%"/>
+		<mx:Spacer width="800"/>
+		<mx:Label id="smallHeader" styleName="header" text="Logged In As Supervisor" height="100%" width="100%" fontSize="18"/>
+	</mx:HBox>
+	<mx:HBox width="100%" height="85%" backgroundColor="#AECAD9" id="leftPane" creationPolicy="all">
+		<mx:VBox>
+			<mx:Button label="Customer Management" height="50" width="175" click="myViewStack.selectedIndex=0" />
+			<mx:Button label="Transaction Management" height="50" width="175" click="myViewStack.selectedIndex=1" />
+			<mx:Button label="Work Order" height="50" width="175" click="myViewStack.selectedIndex=2"/>
+			<mx:Button label="Personalization" height="50" width="175" click="myViewStack.selectedIndex=3"/>
+		</mx:VBox>
+		
+		<mx:ViewStack id="myViewStack" borderStyle="solid" width="100%" height="100%" color="0x323232" creationPolicy="all">
+			<mx:VBox id="cm" label="Customer Management" fontWeight="bold">
+				<mx:Tile width="100%" height="100%" borderStyle="inset" color="0x323232"
+						 direction="horizontal" horizontalGap="10" paddingBottom="10"
+						 paddingLeft="10" paddingRight="10" paddingTop="10" verticalGap="15">
+					<mx:TabNavigator id="customerNavigator" width="1150" height="540">
+						<mx:VBox label="Add New Customer">
+							<mx:VBox id="userDetailFoem" width="100%" height="100%">
+								<mxml:UserDetailForm>									
+								</mxml:UserDetailForm>
+							</mx:VBox>
+						</mx:VBox>
+						<mx:VBox label="View Existing Customer">
+							<mxml:SearchExistingUserDetail>									
+							</mxml:SearchExistingUserDetail>							
+						</mx:VBox>
+						<mx:VBox label="Update Existing Customer Details">
+							<mxml:UpdateExistingUserDetail>									
+							</mxml:UpdateExistingUserDetail>
+						</mx:VBox>
+						<mx:VBox label="Delete Existing Customer">
+							<mxml:DeleteExistingUserDetail>									
+							</mxml:DeleteExistingUserDetail>
+						</mx:VBox>
+					</mx:TabNavigator>					
+				</mx:Tile>
+			</mx:VBox>
+			<mx:VBox id="tm" label="Transaction Management" fontWeight="bold">
+				<mx:Tile width="100%" height="100%" borderStyle="inset" color="0x323232"
+						 direction="horizontal" horizontalGap="10" paddingBottom="10"
+						 paddingLeft="10" paddingRight="10" paddingTop="10" verticalGap="15">
+					<mx:TabNavigator id="transactionNavigator" width="1150" height="540">
+						<mx:VBox label="Add New Transaction">
+							<mxml:TransactionDetailForm>									
+							</mxml:TransactionDetailForm>
+						</mx:VBox>
+						<mx:VBox label="View Existing Transaction">
+							<mxml:SearchTransactionDetail>									
+							</mxml:SearchTransactionDetail>
+						</mx:VBox>
+						<mx:VBox label="Update Existing Transaction">
+							<mxml:UpdateExistingTransaction>									
+							</mxml:UpdateExistingTransaction>							
+						</mx:VBox>
+						<mx:VBox label="Delete Existing Transaction">
+							<mxml:DeleteExistingTransaction>									
+							</mxml:DeleteExistingTransaction>
+						</mx:VBox>
+					</mx:TabNavigator>		
+				</mx:Tile>
+			</mx:VBox>
+			<mx:VBox id="wo" label="Work Order" fontWeight="bold">
+				<mx:Tile width="100%" height="100%" borderStyle="inset" color="0x323232"
+						 direction="horizontal" horizontalGap="10" paddingBottom="10"
+						 paddingLeft="10" paddingRight="10" paddingTop="10" verticalGap="15">
+					<mx:TabNavigator id="workOrderNavigator" width="1150" height="540">
+						<mx:VBox label="Add New Work Order">
+							<mxml:WorkOrderDetailForm>									
+							</mxml:WorkOrderDetailForm>
+						</mx:VBox>
+						<mx:VBox label="Search Existing Work Order">
+							<mxml:UpdateExistingWorkOrder>									
+							</mxml:UpdateExistingWorkOrder>
+						</mx:VBox>
+					</mx:TabNavigator>		
+				</mx:Tile>
+			</mx:VBox>
+			<mx:VBox id="pn" label="Personalization" fontWeight="bold">
+				<mx:Tile width="100%" height="100%" borderStyle="inset" color="0x323232"
+						 direction="horizontal" horizontalGap="10" paddingBottom="10"
+						 paddingLeft="10" paddingRight="10" paddingTop="10" verticalGap="15">
+					<mx:TabNavigator id="personlizationNavigator" width="1150" height="540">
+						<mx:VBox label="Personlization">
+							<mxml:PersonalizationDetailForm>									
+							</mxml:PersonalizationDetailForm>
+						</mx:VBox>
+					</mx:TabNavigator>		
+				</mx:Tile>
+			</mx:VBox>
+		</mx:ViewStack>
+	</mx:HBox>
+</mx:VBox>
+</mx:Application>

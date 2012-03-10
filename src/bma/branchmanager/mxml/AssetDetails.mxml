@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dialog.mxml -->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				layout="vertical"
+				title="Asset Details for the selected period"
+				showCloseButton="true"
+				width="700"
+				height="400"
+				close="titleWindow_close(event);">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			
+			private function titleWindow_close(evt:CloseEvent):void {
+				PopUpManager.removePopUp(this);
+			}
+			
+			public function showDetails():void {
+				searchResults.visible = true;
+				excel.visible = true;
+				pdf.visible = true;
+				print.visible = true;
+				var data : ArrayList = new ArrayList();
+				var user : Object = new Object();
+				user["reportDate"] = "1-Jan-2012";
+				user["asset"] = "Bangle";
+				user["openingAsset"] = "100 grams";
+				user["closingAsset"] = "150 grams";
+				data.addItem(user);
+				user = new Object();
+				user["reportDate"] = "2-Jan-2012";
+				user["asset"] = "Bangle";
+				user["openingAsset"] = "100 grams";
+				user["closingAsset"] = "175 grams";
+				data.addItem(user);
+				user = new Object();
+				user["reportDate"] = "3-Jan-2012";
+				user["asset"] = "Bangle";
+				user["openingAsset"] = "100 grams";
+				user["closingAsset"] = "120 grams";
+				data.addItem(user);
+				searchResults.dataProvider = data;
+			}
+			
+			public function showBranchBreakUp():void {
+				branchBreakUp.visible = true;
+				excel1.visible = true;
+				pdf1.visible = true;
+				print1.visible = true;
+				var data : ArrayList = new ArrayList();
+				var user : Object = new Object();
+				user["transactionId"] = "T1";
+				user["incomingAsset"] = "10 grams";
+				data.addItem(user);
+				user = new Object();
+				user["transactionId"] = "T2";
+				user["incomingAsset"] = "10 grams";
+				data.addItem(user);
+				user = new Object();
+				user["transactionId"] = "T3";
+				user["incomingAsset"] = "10 grams";
+				data.addItem(user);
+				user = new Object();
+				user["transactionId"] = "T4";
+				user["incomingAsset"] = "20 grams";
+				data.addItem(user);
+				branchBreakUp.dataProvider = data;				
+			}
+			
+			public function showBranch():void {			
+				branch.visible = true;
+			}
+			
+		]]>
+	</mx:Script>			
+	<mx:HBox>		
+		<mx:HBox horizontalAlign="left">
+			<mx:Spacer width="300"/>
+			<mx:Image id="excel" source="./images/excel-small.jpg" visible="false"/>
+			<mx:Image id="pdf" source="./images/pdf-small.jpg" visible="false"/>
+			<mx:Image id="print" source="./images/print-small.jpg" visible="false"/>
+		</mx:HBox>
+		<mx:HBox horizontalAlign="left" id="secondGrid">
+			<mx:Spacer width="150"/>
+			<mx:Image id="excel1" source="./images/excel-small.jpg" visible="false"/>
+			<mx:Image id="pdf1" source="./images/pdf-small.jpg" visible="false"/>
+			<mx:Image id="print1" source="./images/print-small.jpg" visible="false"/>
+		</mx:HBox>
+	</mx:HBox>
+	<mx:VBox>		
+		<mx:HBox>
+		<mx:DataGrid id="searchResults" visible="true" width="400" creationComplete="showDetails()" click="showBranchBreakUp()">
+			<mx:columns>
+				<mx:DataGridColumn dataField="reportDate" headerText="Report Date"/>
+				<mx:DataGridColumn dataField="asset" headerText="Asset"/>
+				<mx:DataGridColumn dataField="openingAsset" headerText="Opening Asset"/>
+				<mx:DataGridColumn dataField="closingAsset" headerText="Closing Asset"/>
+			</mx:columns>
+		</mx:DataGrid>
+		<mx:DataGrid id="branchBreakUp" visible="false" width="250" click="showBranch()">
+			<mx:columns>
+				<mx:DataGridColumn dataField="transactionId" headerText="Transaction Id" width="20"/>
+				<mx:DataGridColumn dataField="incomingAsset" headerText="Incoming Asset" width="20"/>
+			</mx:columns>
+		</mx:DataGrid>
+	</mx:HBox>
+	</mx:VBox>
+	<mx:Spacer height="30"/>
+	<mx:HBox id="branch" visible="false">		
+		<mx:VBox>		
+			<mx:HBox>
+				<mx:Label text="Transaction Id"/>
+				<mx:Spacer width="25"/>
+				<mx:Label text="T1"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Transaction Date"/>
+				<mx:Spacer width="10"/>
+				<mx:Label text="1-Jan-2012"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Customer Id"/>
+				<mx:Spacer width="30"/>
+				<mx:Label text="C1"/>
+			</mx:HBox>
+		</mx:VBox>
+		<mx:Spacer width="50"/>
+		<mx:VBox>		
+			<mx:HBox>
+				<mx:Label text="Transaction Amount"/>
+				<mx:Spacer width="30"/>
+				<mx:Label text="10,000 INR"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Rate of Interest"/>
+				<mx:Spacer width="60"/>
+				<mx:Label text="10%"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Due Date"/>
+				<mx:Spacer width="90"/>
+				<mx:Label text="3-Mar-2012"/>
+			</mx:HBox>
+		</mx:VBox>
+	</mx:HBox>
+</mx:TitleWindow>

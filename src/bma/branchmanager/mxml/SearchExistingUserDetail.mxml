@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" creationComplete="init()">
+	
+	<mx:Script>
+		<![CDATA[
+			import bma.branchmanager.script.MySingleton;
+			
+			import mx.controls.Alert;
+			import mx.core.IFlexDisplayObject;
+			import mx.managers.PopUpManager;
+			
+			public function init() : void {
+				MySingleton.getInstance().addEventListener("labelClick", openPopUp);
+			}
+			
+			public function openPopUp(event : Event) : void {				
+				var object : DisplayTransactionDetail = new DisplayTransactionDetail();
+				object.width = 500;
+				object.height = 500;
+				PopUpManager.addPopUp(object, this, true);
+				PopUpManager.centerPopUp(object);
+			}
+			
+			private function showSearchResults() : void {
+				
+				if(idType.selectedLabel == "Select") {
+					Alert.show("Please specify a criteria to Search");
+				} else {
+					excel.visible = true;
+					pdf.visible = true;
+					print.visible = true;
+					searchResults.visible = true;
+					var data : ArrayList = new ArrayList();
+					var user : Object = new Object();
+					user["customerId"] = "1";
+					user["firstName"] = "Tiruppathi Rajan";
+					user["lastName"] = "Gunaseelan";
+					user["customerSince"] = "1-Jan-2010";
+					user["recentTransactions"] = "T1, T2, T3";
+					data.addItem(user);
+					user = new Object();
+					user["customerId"] = "2";
+					user["firstName"] = "Ponvino";
+					user["lastName"] = "Vijayan";
+					user["customerSince"] = "2-Feb-2011";
+					user["recentTransactions"] = "T4, T5";				
+					data.addItem(user);
+					user = new Object();
+					user["customerId"] = "3";
+					user["firstName"] = "Narayanamoorthy";
+					user["lastName"] = "Shanmuga Ganapathy";
+					user["customerSince"] = "3-Mar-2012";
+					user["recentTransactions"] = "T6";
+					data.addItem(user);
+					searchResults.dataProvider = data;
+				}
+			}
+			
+			public function showCustomerTransaction() : void {
+				
+				
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:FormHeading label="Search Existing Customer - Please enter the customer details to search"/>
+	<mx:FormItem />
+	<mx:VBox width="100%" height="100%">
+		<mx:HBox>
+			<mx:Label id="lab2" text="Search By : "/>
+			<mx:ComboBox id="idType">
+				<mx:dataProvider>
+					<mx:ArrayList>
+						<mx:String>Select</mx:String>
+						<mx:String>Customer Id</mx:String>
+						<mx:String>Name</mx:String>
+					</mx:ArrayList>			
+				</mx:dataProvider>                    
+			</mx:ComboBox>
+			<mx:Label id="lab1" text="Search Value :  "/>
+			<mx:TextInput id="txt1" />
+			<mx:Spacer width="10"/>
+			<mx:Button label="Search User" click="showSearchResults()"/>			
+		</mx:HBox>
+		<mx:Spacer height="30"/>
+		<mx:HBox horizontalAlign="left">
+			<mx:Spacer width="650"/>
+			<mx:Image id="excel" source="./images/excel-small.jpg" visible="false"/>
+			<mx:Image id="pdf" source="./images/pdf-small.jpg" visible="false"/>
+			<mx:Image id="print" source="./images/print-small.jpg" visible="false"/>
+		</mx:HBox>
+		<mx:DataGrid id="searchResults" visible="false" width="750">
+			<mx:columns>
+				<mx:DataGridColumn dataField="customerId" headerText="Customer ID"/>
+				<mx:DataGridColumn dataField="firstName" headerText="First Name"/>
+				<mx:DataGridColumn dataField="lastName" headerText="Last Name"/>
+				<mx:DataGridColumn dataField="customerSince" headerText="Customer Since"/>
+				<mx:DataGridColumn dataField="recentTransactions" headerText="Recent Transactions" itemRenderer="bma.branchmanager.script.DataGridColumnLinkButtonRenderer"/>
+			</mx:columns>
+		</mx:DataGrid>
+	</mx:VBox>	
+</mx:Form>

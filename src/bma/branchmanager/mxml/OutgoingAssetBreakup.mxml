@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dialog.mxml -->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				layout="vertical"
+				title="Outgoing Asset Details for the selected period"
+				showCloseButton="true"
+				width="750"
+				height="400"
+				close="titleWindow_close(event);">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			
+			private function titleWindow_close(evt:CloseEvent):void {
+				PopUpManager.removePopUp(this);
+			}
+			
+			public function showDetails():void {
+				searchResults.visible = true;
+				excel.visible = true;
+				pdf.visible = true;
+				print.visible = true;
+				var data : ArrayList = new ArrayList();
+				var user : Object = new Object();
+				user["asset"] = "Bangle";
+				user["openingAsset"] = "100 grams";
+				user["closingAsset"] = "50 grams";
+				data.addItem(user);
+				user = new Object();
+				user["asset"] = "Chain";
+				user["openingAsset"] = "100 grams";
+				user["closingAsset"] = "75 grams";
+				data.addItem(user);
+				user = new Object();
+				user["asset"] = "Ring";
+				user["openingAsset"] = "100 grams";
+				user["closingAsset"] = "50 grams";
+				data.addItem(user);
+				searchResults.dataProvider = data;
+			}
+			
+			public function showBranchBreakUp():void {
+				branchBreakUp.visible = true;
+				excel1.visible = true;
+				pdf1.visible = true;
+				print1.visible = true;
+				var data : ArrayList = new ArrayList();
+				var user : Object = new Object();
+				user["branchId"] = "B1";
+				user["outgoingAsset"] = "10 grams";
+				data.addItem(user);
+				user = new Object();
+				user["branchId"] = "B2";
+				user["outgoingAsset"] = "10 grams";
+				data.addItem(user);
+				user = new Object();
+				user["branchId"] = "B3";
+				user["outgoingAsset"] = "10 grams";
+				data.addItem(user);
+				user = new Object();
+				user["branchId"] = "B4";
+				user["outgoingAsset"] = "20 grams";
+				data.addItem(user);
+				branchBreakUp.dataProvider = data;				
+			}
+			
+			public function showBranch():void {			
+				branch.visible = true;
+			}
+			
+		]]>
+	</mx:Script>	
+	<mx:HBox>		
+		<mx:HBox horizontalAlign="left">
+			<mx:Spacer width="300"/>
+			<mx:Image id="excel" source="./images/excel-small.jpg" visible="false"/>
+			<mx:Image id="pdf" source="./images/pdf-small.jpg" visible="false"/>
+			<mx:Image id="print" source="./images/print-small.jpg" visible="false"/>
+		</mx:HBox>
+		<mx:HBox horizontalAlign="left" id="secondGrid">
+			<mx:Spacer width="150"/>
+			<mx:Image id="excel1" source="./images/excel-small.jpg" visible="false"/>
+			<mx:Image id="pdf1" source="./images/pdf-small.jpg" visible="false"/>
+			<mx:Image id="print1" source="./images/print-small.jpg" visible="false"/>
+		</mx:HBox>
+	</mx:HBox>
+	<mx:VBox>		
+		<mx:HBox>		
+			<mx:DataGrid id="searchResults" visible="false" width="400" creationComplete="showDetails()" click="showBranchBreakUp()">
+				<mx:columns>
+					<mx:DataGridColumn dataField="asset" headerText="Asset" width="20"/>
+					<mx:DataGridColumn dataField="openingAsset" headerText="Opening Asset" width="20"/>
+					<mx:DataGridColumn dataField="closingAsset" headerText="Closing Asset" width="20"/>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:DataGrid id="branchBreakUp" visible="false" width="250" click="showBranch()">
+				<mx:columns>
+					<mx:DataGridColumn dataField="branchId" headerText="Branch Id" width="20"/>
+					<mx:DataGridColumn dataField="outgoingAsset" headerText="Outgoing Asset" width="20"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:HBox>
+	</mx:VBox>
+	<mx:Spacer height="20"/>
+	<mx:HBox id="branch" visible="false">		
+		<mx:VBox>		
+			<mx:HBox>
+				<mx:Label text="Outgoing Branch Id"/>
+				<mx:Spacer width="40"/>
+				<mx:Label text="B1"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Outgoing Branch Zone"/>
+				<mx:Spacer width="20"/>
+				<mx:Label text="South"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Outgoing Branch Manager"/>
+				<mx:Spacer width="1"/>
+				<mx:Label text="Tiruppathi Rajan"/>
+			</mx:HBox>
+		</mx:VBox>
+		<mx:Spacer width="25"/>
+		<mx:VBox>		
+			<mx:HBox>
+				<mx:Label text="Outgoing Branch Address"/>
+				<mx:Spacer width="60"/>
+				<mx:Label text="215, 5th Street, Jersey City, NJ 07302"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Outgoing Branch Rating"/>
+				<mx:Spacer width="70"/>
+				<mx:Label text="3/5"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Outgoing Branch Manager Contact #"/>
+				<mx:Spacer width="1"/>
+				<mx:Label text="201-450-0454"/>
+			</mx:HBox>
+		</mx:VBox>
+	</mx:HBox>
+</mx:TitleWindow>

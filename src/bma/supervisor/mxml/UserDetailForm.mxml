@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			
+			
+			private function createUser() : void {				
+				Alert.show("Please fill in all the mandatory fields to create a customer");
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:FormHeading label="Customer Details Form - Please fill the following mandatory fields"/>
+	<mx:FormItem />
+	<mx:HBox>		
+		<mx:FormItem label="First Name" horizontalAlign="left" required="true" />
+		<mx:Spacer width="30"/>
+		<mx:TextInput id="fname" width="100%"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Last Name" horizontalAlign="left" required="true" />
+		<mx:Spacer width="30"/>
+		<mx:TextInput id="lname" width="100%"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Address" horizontalAlign="left" required="true" />
+		<mx:Spacer width="42"/>
+		<mx:VBox>
+			<mx:TextInput id="addr1" width="100%"/>
+			<mx:TextInput id="addr2" width="100%"/>
+			<mx:Spacer/>
+		</mx:VBox>	
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="City" direction="vertical" horizontalAlign="left" required="true" />
+		<mx:Spacer width="70"/>
+		<mx:TextInput id="city"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="ZIP Code" horizontalAlign="left" required="true"/>
+		<mx:Spacer width="40"/>
+		<mx:TextInput id="zip" width="100%"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="State" horizontalAlign="left" required="true" />
+		<mx:Spacer width="60"/>
+		<mx:ComboBox id="state">
+			<mx:dataProvider>
+				<mx:ArrayList>
+					<mx:String>Select</mx:String>
+					<mx:String>TN</mx:String>
+					<mx:String>KN</mx:String>
+					<mx:String>HYD</mx:String>
+				</mx:ArrayList>			
+			</mx:dataProvider>                    
+		</mx:ComboBox>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Country" horizontalAlign="left" required="true" />
+		<mx:Spacer width="45"/>
+		<mx:ComboBox id="cntry">
+			<mx:dataProvider>
+				<mx:ArrayList>
+					<mx:String>Select</mx:String>
+					<mx:String>INDIA</mx:String>
+					<mx:String>USA</mx:String>
+				</mx:ArrayList>			
+			</mx:dataProvider>                    
+		</mx:ComboBox>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Contact Number" horizontalAlign="left" required="true"/>
+		<mx:Spacer width="1"/>
+		<mx:TextInput id="contactNumber" width="100%"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="ID Type" horizontalAlign="left" required="true" />
+		<mx:Spacer width="50"/>
+		<mx:ComboBox id="idType">
+			<mx:dataProvider>
+				<mx:ArrayList>
+					<mx:String>Select</mx:String>
+					<mx:String>Pan Card</mx:String>
+					<mx:String>Voter Id</mx:String>
+					<mx:String>Passport</mx:String>
+					<mx:String>Ration Card</mx:String>
+				</mx:ArrayList>			
+			</mx:dataProvider>                    
+		</mx:ComboBox>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:FormItem label="Attach ID Proof" horizontalAlign="left" required="true" />
+		<mx:Spacer width="8"/>
+		<mx:TextInput id="idProof" width="100%"/>
+		<mx:Button label="Browse" enabled="true" labelPlacement="right"/>
+	</mx:HBox>
+	<mx:FormItem>
+	</mx:FormItem>
+	<mx:Button label="Create User" enabled="true" labelPlacement="right" click="createUser()"/>
+</mx:Form>

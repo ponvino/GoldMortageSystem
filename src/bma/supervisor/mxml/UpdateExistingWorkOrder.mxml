@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			import mx.controls.Alert;
+			
+			
+			private function showSearchResults() : void {
+				searchResults.visible = true;
+				excel.visible = true;
+				pdf.visible = true;
+				print.visible = true;
+				var data : ArrayList = new ArrayList();
+				var user : Object = new Object();
+				user["workOrderId"] = "1";
+				user["initiationDate"] = "1-Jan-2012";
+				user["workOrderDetail"] = "Request for Leave on 3-Jan-2012";
+				user["processedBy"] = "Tiru, Branch Mangager";
+				user["comments"] = "Granted";
+				user["editWorkOrder"] = "true";
+				user["requestForUpdate"] = "true";
+				user["deleteWorkOrder"] = "true";
+				data.addItem(user);
+				user = new Object();
+				user["workOrderId"] = "1";
+				user["initiationDate"] = "1-Feb-2012";
+				user["workOrderDetail"] = "Request for Leave on 3-Feb-2012";
+				user["processedBy"] = "Tiru, Branch Mangager";
+				user["comments"] = "Granted";
+				user["editWorkOrder"] = "true";
+				user["requestForUpdate"] = "true";
+				user["deleteWorkOrder"] = "true";
+				data.addItem(user);
+				user = new Object();
+				user["workOrderId"] = "1";
+				user["initiationDate"] = "1-Mar-2012";
+				user["workOrderDetail"] = "Request for Leave on 3-Mar-2012";
+				user["processedBy"] = "Tiru, Branch Mangager";
+				user["comments"] = "Granted";
+				user["editWorkOrder"] = "true";
+				user["requestForUpdate"] = "true";
+				user["deleteWorkOrder"] = "true";
+				data.addItem(user);
+				searchResults.dataProvider = data;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:FormHeading label="Search and Update Existing Work Order - Please enter the work order details to search"/>
+	<mx:FormItem />
+	<mx:VBox width="100%" height="100%">
+		<mx:HBox>
+			<mx:Label id="lab2" text="Search Work Orders : "/>					
+			<mx:RadioButtonGroup id="radiogroup1"/>
+			<mx:RadioButton label="All" groupName="radiogroup1"/>
+			<mx:Spacer width="50"/>
+			<mx:RadioButton label="Open" groupName="radiogroup1"/>
+			<mx:Spacer width="50"/>
+			<mx:RadioButton label="Completed" groupName="radiogroup1"/>
+			<mx:Spacer width="70"/>
+			<mx:Button label="Search and Update Work Order" click="showSearchResults()"/>			
+		</mx:HBox>
+		<mx:Spacer height="30"/>
+		<mx:HBox horizontalAlign="left">
+			<mx:Spacer width="1000"/>
+			<mx:Image id="excel" source="./images/excel-small.jpg" visible="false"/>
+			<mx:Image id="pdf" source="./images/pdf-small.jpg" visible="false"/>
+			<mx:Image id="print" source="./images/print-small.jpg" visible="false"/>
+		</mx:HBox>
+		<mx:DataGrid id="searchResults" visible="false" width="1110">
+			<mx:columns>
+				<mx:DataGridColumn dataField="workOrderId" headerText="Work Order Id"/>
+				<mx:DataGridColumn dataField="initiationDate" headerText="Initiation Date"/>
+				<mx:DataGridColumn dataField="workOrderDetail" headerText="Work Order Detail"/>
+				<mx:DataGridColumn dataField="processedBy" headerText="Processed By"/>
+				<mx:DataGridColumn dataField="comments" headerText="Comments"/>
+				<mx:DataGridColumn dataField="editWorkOrder" headerText="Edit Work Order" itemRenderer="bma.supervisor.script.DataGridColumnImageRenderer"/>
+				<mx:DataGridColumn dataField="requestForUpdate" headerText="Request For Update" itemRenderer="bma.supervisor.script.DataGridColumnUpdateWOImageRenderer"/>
+				<mx:DataGridColumn dataField="deleteWorkOrder" headerText="Cancel Work Order" itemRenderer="bma.supervisor.script.DataGridColumnCancelWOImageRenderer"/>
+			</mx:columns>
+		</mx:DataGrid>
+	</mx:VBox>	
+</mx:Form>

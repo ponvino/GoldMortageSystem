@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dialog.mxml -->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				layout="vertical"
+				title="Incoming Money Transfer for the selected period"
+				showCloseButton="true"
+				width="750"
+				height="400"
+				close="titleWindow_close(event);">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			
+			private function titleWindow_close(evt:CloseEvent):void {
+				PopUpManager.removePopUp(this);
+			}
+			
+			public function showDetails():void {
+				searchResults.visible = true;
+				excel.visible = true;
+				pdf.visible = true;
+				print.visible = true;
+				var data : ArrayList = new ArrayList();
+				var user : Object = new Object();
+				user["transactionDate"] = "1-Jan-2012";
+				user["branchId"] = "B1";
+				user["transactionAmount"] = "20,000 INR";
+				data.addItem(user);
+				user = new Object();
+				user["transactionDate"] = "1-Jan-2012";
+				user["branchId"] = "B2";
+				user["transactionAmount"] = "10,000 INR";
+				data.addItem(user);
+				user = new Object();
+				user["transactionDate"] = "1-Jan-2012";
+				user["branchId"] = "B3";
+				user["transactionAmount"] = "20,000 INR";
+				data.addItem(user);
+				searchResults.dataProvider = data;
+			}
+			
+			public function showBranch():void {			
+				branch.visible = true;
+			}
+			
+		]]>
+	</mx:Script>	
+	<mx:HBox>		
+		<mx:HBox horizontalAlign="left">
+			<mx:Spacer width="300"/>
+			<mx:Image id="excel" source="./images/excel-small.jpg" visible="false"/>
+			<mx:Image id="pdf" source="./images/pdf-small.jpg" visible="false"/>
+			<mx:Image id="print" source="./images/print-small.jpg" visible="false"/>
+		</mx:HBox>
+	</mx:HBox>
+	<mx:VBox>		
+		<mx:HBox>		
+			<mx:DataGrid id="searchResults" visible="false" width="400" creationComplete="showDetails()" click="showBranch()">
+				<mx:columns>
+					<mx:DataGridColumn dataField="transactionDate" headerText="Transaction Date" width="20"/>
+					<mx:DataGridColumn dataField="branchId" headerText="Branch Id" width="20"/>
+					<mx:DataGridColumn dataField="transactionAmount" headerText="Transaction Amount" width="20"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:HBox>
+	</mx:VBox>
+	<mx:Spacer height="20"/>
+	<mx:HBox id="branch" visible="false">		
+		<mx:VBox>		
+			<mx:HBox>
+				<mx:Label text="Incoming Branch Id"/>
+				<mx:Spacer width="40"/>
+				<mx:Label text="B1"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Incoming Branch Zone"/>
+				<mx:Spacer width="20"/>
+				<mx:Label text="South"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Incoming Branch Manager"/>
+				<mx:Spacer width="1"/>
+				<mx:Label text="Tiruppathi Rajan"/>
+			</mx:HBox>
+		</mx:VBox>
+		<mx:Spacer width="25"/>
+		<mx:VBox>		
+			<mx:HBox>
+				<mx:Label text="Incoming Branch Address"/>
+				<mx:Spacer width="60"/>
+				<mx:Label text="215, 5th Street, Jersey City, NJ 07302"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Incoming Branch Rating"/>
+				<mx:Spacer width="70"/>
+				<mx:Label text="3/5"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Incoming Branch Manager Contact #"/>
+				<mx:Spacer width="1"/>
+				<mx:Label text="201-450-0454"/>
+			</mx:HBox>
+		</mx:VBox>
+	</mx:HBox>
+</mx:TitleWindow>

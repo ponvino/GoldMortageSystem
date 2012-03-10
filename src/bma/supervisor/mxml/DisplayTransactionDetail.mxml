@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml"  id="displayTransaction" visible="false" width="20%" height="30%" creationComplete="init()">
+	
+	<mx:Script>
+		<![CDATA[
+			import bma.supervisor.script.MySingleton;
+			
+			import mx.controls.Alert;
+			
+			public function init() : void {
+				MySingleton.getInstance().addEventListener("labelClick", openPopUp);
+			}
+			
+			
+			public function openPopUp(event : Event) : void {
+				displayTransaction.visible = true;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:FormHeading label="Search Existing Transaction - Please enter the transaction details to search"/>
+	<mx:FormItem />
+	<mx:VBox width="100%" height="100%">
+		<mx:HBox>
+			<mx:Label id="lab2" text="Search By : "/>
+			<mx:ComboBox id="idType">
+				<mx:dataProvider>
+					<mx:ArrayList>
+						<mx:String>Select</mx:String>
+						<mx:String>Transaction Id</mx:String>
+						<mx:String>Customer Id</mx:String>
+					</mx:ArrayList>			
+				</mx:dataProvider>                    
+			</mx:ComboBox>
+			<mx:Label id="lab1" text="Search Value :  "/>
+			<mx:TextInput id="txt1" />
+			<mx:Spacer width="10"/>
+			<mx:Button label="Search Transaction" click="showSearchResults()"/>			
+		</mx:HBox>
+		<mx:Spacer height="30"/>		
+	</mx:VBox>	
+</mx:Form>

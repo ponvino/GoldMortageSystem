@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			
+			
+			private function showSearchResults() : void {
+				searchResults.visible = true;
+				excel.visible = true;
+				pdf.visible = true;
+				print.visible = true;
+				var data : ArrayList = new ArrayList();
+				var user : Object = new Object();
+				user["transactionId"] = "1";
+				user["transactionDate"] = "1-Jan-2012";
+				user["supervisorId"] = "SV1";
+				user["customerId"] = "1";
+				user["totalAsset"] = "10 grams";
+				user["marketRate"] = "2700";
+				user["rateOfInterest"] = "10%";
+				user["amountPaid"] = "27000 (INR)";
+				user["returnAmount"] = "28000(INR)";
+				user["dueDate"] = "1-Apr-2012";
+				user["deleteTransaction"] = "true";
+				data.addItem(user);
+				user = new Object();
+				user["transactionId"] = "2";
+				user["transactionDate"] = "1-Feb-2012";
+				user["supervisorId"] = "SV2";
+				user["customerId"] = "2";
+				user["totalAsset"] = "5 grams";
+				user["marketRate"] = "2700";
+				user["rateOfInterest"] = "10%";
+				user["amountPaid"] = "15000 (INR)";
+				user["returnAmount"] = "18000(INR)";
+				user["dueDate"] = "1-May-2012";		
+				user["deleteTransaction"] = "true";
+				data.addItem(user);
+				user = new Object();
+				user["transactionId"] = "3";
+				user["transactionDate"] = "1-Jan-2012";
+				user["supervisorId"] = "SV3";
+				user["customerId"] = "3";
+				user["totalAsset"] = "8 grams";
+				user["marketRate"] = "2700";
+				user["rateOfInterest"] = "10%";
+				user["amountPaid"] = "7000 (INR)";
+				user["returnAmount"] = "15000(INR)";
+				user["dueDate"] = "1-Jun-2012";
+				user["deleteTransaction"] = "true";
+				data.addItem(user);
+				searchResults.dataProvider = data;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:FormHeading label="Search Existing Transaction - Please enter the transaction details to search"/>
+	<mx:FormItem />
+	<mx:VBox width="100%" height="100%">
+		<mx:HBox>
+			<mx:Label id="lab2" text="Search By : "/>
+			<mx:ComboBox id="idType">
+				<mx:dataProvider>
+					<mx:ArrayList>
+						<mx:String>Select</mx:String>
+						<mx:String>Transaction Id</mx:String>
+						<mx:String>Customer Id</mx:String>
+					</mx:ArrayList>			
+				</mx:dataProvider>                    
+			</mx:ComboBox>
+			<mx:Label id="lab1" text="Search Value :  "/>
+			<mx:TextInput id="txt1" />
+			<mx:Spacer width="10"/>
+			<mx:Button label="Search and Delete Transaction" click="showSearchResults()"/>			
+		</mx:HBox>
+		<mx:Spacer height="30"/>
+		<mx:HBox horizontalAlign="left">
+			<mx:Spacer width="1000"/>
+			<mx:Image id="excel" source="./images/excel-small.jpg" visible="false"/>
+			<mx:Image id="pdf" source="./images/pdf-small.jpg" visible="false"/>
+			<mx:Image id="print" source="./images/print-small.jpg" visible="false"/>
+		</mx:HBox>
+		<mx:DataGrid id="searchResults" visible="false" width="1110">
+			<mx:columns>
+				<mx:DataGridColumn dataField="transactionId" headerText="Transaction Id"/>
+				<mx:DataGridColumn dataField="transactionDate" headerText="Transaction Date"/>
+				<mx:DataGridColumn dataField="supervisorId" headerText="Supervisor Id"/>
+				<mx:DataGridColumn dataField="customerId" headerText="Customer Id"/>
+				<mx:DataGridColumn dataField="totalAsset" headerText="Total Asset"/>
+				<mx:DataGridColumn dataField="marketRate" headerText="Market Rate"/>
+				<mx:DataGridColumn dataField="rateOfInterest" headerText="Rate of Interest"/>
+				<mx:DataGridColumn dataField="amountPaid" headerText="Amount Paid"/>				
+				<mx:DataGridColumn dataField="returnAmount" headerText="Return Amount"/>
+				<mx:DataGridColumn dataField="dueDate" headerText="Due Date"/>
+				<mx:DataGridColumn dataField="deleteTransaction" headerText="Delete Transaction" itemRenderer="bma.branchmanager.script.DataGridColumnImageRenderer"/>
+			</mx:columns>
+		</mx:DataGrid>
+	</mx:VBox>	
+</mx:Form>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dialog.mxml -->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				layout="vertical"
+				title="Edit Work Order Details"
+				showCloseButton="true"
+				width="800"
+				height="300"
+				close="titleWindow_close(event);">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			
+			private function titleWindow_close(evt:CloseEvent):void {
+				PopUpManager.removePopUp(this);
+			}
+		]]>
+	</mx:Script>
+	<mx:HBox>		
+		<mx:VBox>
+			<mx:HBox>		
+				<mx:FormItem label="Update Date" horizontalAlign="left" required="true" />
+				<mx:Spacer width="50"/>
+				<mx:DateField id="date" width="100%" text="8-Mar-2012"/>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:FormItem label="Request To" horizontalAlign="left" required="true" />
+				<mx:Spacer width="53"/>
+				<mx:ComboBox id="requestTo" selectedItem="Manager">
+					<mx:dataProvider>
+						<mx:ArrayList>
+							<mx:String>Select</mx:String>
+							<mx:String>Manager</mx:String>
+							<mx:String>Assistant Manager</mx:String>
+							<mx:String>Both</mx:String>
+						</mx:ArrayList>			
+					</mx:dataProvider>                    
+				</mx:ComboBox>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:FormItem label="Request Type" horizontalAlign="left" required="true" />
+				<mx:Spacer width="42"/>
+				<mx:ComboBox id="requestType" selectedItem="Request for a Loan">
+					<mx:dataProvider>
+						<mx:ArrayList>
+							<mx:String>Select</mx:String>
+							<mx:String>Apply for a Leave</mx:String>
+							<mx:String>Request for a Loan</mx:String>
+							<mx:String>Request for Additional Infrastructure</mx:String>
+							<mx:String>Request Money for Branch Operations</mx:String>
+						</mx:ArrayList>			
+					</mx:dataProvider>                    
+				</mx:ComboBox>	
+			</mx:HBox>
+		</mx:VBox>
+		<mx:Spacer width="25"/>
+		<mx:VBox>
+			<mx:HBox>							
+				<mx:Label text="Update Comments"/>
+			</mx:HBox>
+			<mx:HBox>						
+				<mx:Spacer width="10"/>
+				<mx:TextArea width="300" height="100"/>
+			</mx:HBox>
+		</mx:VBox>		
+	</mx:HBox>
+	<mx:Spacer height="35"/>
+	<mx:HBox>
+		<mx:Spacer width="250"/>
+		<mx:Button label="Update" />
+		<mx:Button label="Reset" />
+		<mx:Button label="Cancel" />
+	</mx:HBox>
+</mx:TitleWindow>
